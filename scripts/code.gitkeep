@@ -35,7 +35,7 @@ def Read_dict() :
   global RNA_codon_table
   
   RNA_codon_table={}
-  milon = open('codon_AA.txt', 'r')
+  milon = open('data/codon_AA.txt', 'r')
   for line in (milon):
     line = line.rstrip("\r\n")
     num=line[0:3]
@@ -84,9 +84,9 @@ def Insert_DNA(seq):
     n=random.choice(list)
     seq=seq[0:m+1]+n+seq[(m+1):]
   return(seq)
-
+dop_until_chn=0
 seq=""  
-file = open('pck_coli.txt', 'r')
+file = open('data/pck_coli.txt', 'r')
 make_mil=Read_dict()
 for line in(file):
   if line[0]!=">":
@@ -97,13 +97,16 @@ gan=0
 while gan<=100:
   ran_mata=random.randrange(1,101)
   if ran_mata<98:
+    dop_until_chn=dop_until_chn+1
     mata=Mutate_DNA(seq)
   elif ran_mata==99:
-     mata=Insert_DNA(seq)
-     break
+    dop_until_chn=dop_until_chn+1
+    mata=Insert_DNA(seq)
+    break
   else:
-     mata=Delete_DNA(seq)
-     break
+    dop_until_chn=dop_until_chn+1
+    mata=Delete_DNA(seq)
+    break
   gan=gan+1
   print(ran_mata)
 
