@@ -96,9 +96,14 @@ for line in(file):
 gan=0
 while gan<=100:
   ran_mata=random.randrange(1,101)
-  if ran_mata<98:
+  if ran_mata<98: 
     dop_until_chn=dop_until_chn+1
     mata=Mutate_DNA(seq)
+    protin=RNA_prot(seq) 
+    protin_mata=RNA_prot(mata)
+    ASVAHA=Comp_seq(protin,protin_mata)
+    if ASVAHA!=0:
+      break
   elif ran_mata==99:
     dop_until_chn=dop_until_chn+1
     mata=Insert_DNA(seq)
@@ -108,14 +113,19 @@ while gan<=100:
     mata=Delete_DNA(seq)
     break
   gan=gan+1
-  print(ran_mata)
+  
 
 protin=RNA_prot(seq) 
 protin_mata=RNA_prot(mata)
 ASVAHA=Comp_seq(protin,protin_mata)
-print("original: ",protin )
-print("mutation: ",protin_mata )
-print("the num of mutations is:   ")
-print("The difference is:   ",ASVAHA)
+file_a=open('results/results_can.fasta', 'w')
+file_a.write("original: "+protin+ "\n")
+file_a.write("mutation: "+protin_mata+"\n" )
+file_a.write("the num of mutations is:   "+ str(dop_until_chn) +"\n")
+file_a.write("The difference is:   "+str(ASVAHA)+"\n")
+file_a.close()
+file_a=open('results/results_can.fasta', 'r')
 
+for line in (file_a):
+  print(line)
   

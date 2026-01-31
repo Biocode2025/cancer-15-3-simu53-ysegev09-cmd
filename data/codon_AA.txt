@@ -62,4 +62,3 @@ GUG	V
 GCG	A
 GAG	E
 GGG	G
-
