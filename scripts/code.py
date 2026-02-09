@@ -94,26 +94,27 @@ for line in(file):
     call3=DNA_RNA_Cod(line)
     seq=seq+call3
 gan=0
-while gan<=100:
-  ran_mata=random.randrange(1,101)
-  if ran_mata<98: 
-    dop_until_chn=dop_until_chn+1
-    mata=Mutate_DNA(seq)
-    protin=RNA_prot(seq) 
-    protin_mata=RNA_prot(mata)
-    ASVAHA=Comp_seq(protin,protin_mata)
-    if ASVAHA!=0:
+
+while True:
+  dop_until_chn=dop_until_chn+1
+  chan_mata=random.randrange(1,10001)
+  if chan_mata==3:
+    ran_mata=random.randrange(1,101)
+    if ran_mata<98: 
+      mata=Mutate_DNA(seq)
+      protin=RNA_prot(seq) 
+      protin_mata=RNA_prot(mata)
+      ASVAHA=Comp_seq(protin,protin_mata)
+      if ASVAHA!=0:
+        break
+    elif ran_mata==99:
+      mata=Insert_DNA(seq)
       break
-  elif ran_mata==99:
-    dop_until_chn=dop_until_chn+1
-    mata=Insert_DNA(seq)
-    break
-  else:
-    dop_until_chn=dop_until_chn+1
-    mata=Delete_DNA(seq)
-    break
-  gan=gan+1
-  
+    else:
+      mata=Delete_DNA(seq)
+      break
+
+   
 
 protin=RNA_prot(seq) 
 protin_mata=RNA_prot(mata)
@@ -121,8 +122,9 @@ ASVAHA=Comp_seq(protin,protin_mata)
 file_a=open('results/results_can.fasta', 'w')
 file_a.write("original: "+protin+ "\n")
 file_a.write("mutation: "+protin_mata+"\n" )
-file_a.write("the num of mutations is:   "+ str(dop_until_chn) +"\n")
 file_a.write("The difference is:   "+str(ASVAHA)+"\n")
+file_a.write("The num of raplacains is:   "+str(dop_until_chn)+"\n")
+
 file_a.close()
 file_a=open('results/results_can.fasta', 'r')
 
